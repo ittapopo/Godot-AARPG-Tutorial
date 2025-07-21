@@ -14,12 +14,13 @@ var invulnerable : bool = false
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
-#@onready var hit_box : HitBox = $HitBox
+@onready var hit_box : HitBox = $HitBox
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 
 func _ready():
 	state_machine.initialize( self )
 	player = PlayerManager.player
+	hit_box.Damaged.connect( _take_damage )
 	pass
 
 
@@ -61,3 +62,8 @@ func anim_direction() -> String:
 		return "up"
 	else:
 		return "side"
+
+
+func _take_damage( damage : int ) -> void:
+	hp -= damage
+	enemy_damaged.emit()
