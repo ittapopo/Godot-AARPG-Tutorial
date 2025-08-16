@@ -86,6 +86,12 @@ func update_hp( delta : int ) -> void:
 	hp = clampi( hp + delta, 0, max_hp )
 	pass
 
-func make_invulerable( ) -> void:
+func MakeInvulerable( _duration : float = 1.0 ) -> void:
+	invulnerable = true
+	hit_box.monitoring = false
 	
+	await get_tree().create_timer( _duration ).timeout
+	
+	invulnerable = false
+	hit_box.monitoring = true
 	pass
