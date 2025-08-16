@@ -7,7 +7,7 @@ var current_state : EnemyState
 
 
 func _ready():
-	process_mode == Node.PROCESS_MODE_DISABLED
+	process_mode = Node.PROCESS_MODE_DISABLED
 	pass 
 
 
