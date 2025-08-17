@@ -17,35 +17,35 @@ func init() -> void:
 
 
 ## What happens when the player enter this State?
-func Enter() -> void:
+func enter() -> void:
 	player.animation_player.animation_finished.connect( _animation_finished )
 	
 	direction = player.global_position.direction_to( hurt_box.global_position )
 	player.velocity = direction * -knockback_speed
-	player.SetDirection()
+	player.set_direction()
 	
-	player.UpdateAnimation("stun")
-	player.MakeInvulerable( invulnerable_duration )
+	player.update_animation("stun")
+	player.make_invulnerable( invulnerable_duration )
 	player.effect_animation_player.play("damaged")
 	pass
 
 ## What happens when the player exits this State?
-func Exit() -> void:
+func exit() -> void:
 	next_state = null
 	player.animation_player.animation_finished.disconnect( _animation_finished )
 	pass
 
 ## What happens during the _process update in this State?
-func Process( _delta : float ) -> State:
+func process( _delta : float ) -> State:
 	player.velocity -= player.velocity * decelerate_speed * _delta
 	return next_state
 
 ## What happens during the _physics_process update in this State?
-func Physics(_delta: float ) -> State:
+func physics(_delta: float ) -> State:
 	return null
 
 ## What happens with input events in this State?
-func HandleInput( _event: InputEvent ) -> State:
+func handle_input( _event: InputEvent ) -> State:
 	return null
 
 func _player_damaged( _hurt_box : HurtBox) -> void:

@@ -11,17 +11,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	change_state( current_state.Process( delta ) )
+	change_state( current_state.process( delta ) )
 	pass
 
 
 func _physics_process(delta):
-	change_state( current_state.Physics ( delta ) )
+	change_state( current_state.physics ( delta ) )
 	pass
 	
 
 func _unhandled_input(event):
-	change_state( current_state.HandleInput( event ) )
+	change_state( current_state.handle_input( event ) )
 	pass
 
 
@@ -50,8 +50,8 @@ func change_state( new_state : State ) -> void:
 		return
 	
 	if current_state:
-		current_state.Exit()
+		current_state.exit()
 	
 	prev_state = current_state
 	current_state = new_state
-	current_state.Enter()
+	current_state.enter()

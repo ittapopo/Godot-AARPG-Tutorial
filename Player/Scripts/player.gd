@@ -42,7 +42,7 @@ func _physics_process( _delta: float):
 	move_and_slide()
 
 
-func SetDirection() -> bool:
+func set_direction() -> bool:
 	if direction == Vector2.ZERO:
 		return false
 	
@@ -59,11 +59,11 @@ func SetDirection() -> bool:
 	return true
 
 
-func UpdateAnimation( state : String ) -> void:
-	animation_player.play( state + "_" + AnimDirection())
+func update_animation( state : String ) -> void:
+	animation_player.play( state + "_" + anim_direction())
 	pass
 
-func AnimDirection() -> String:
+func anim_direction() -> String:
 	if cardinal_direction == Vector2.DOWN:
 		return "down"
 	elif cardinal_direction == Vector2.UP:
@@ -86,7 +86,7 @@ func update_hp( delta : int ) -> void:
 	hp = clampi( hp + delta, 0, max_hp )
 	pass
 
-func MakeInvulerable( _duration : float = 1.0 ) -> void:
+func make_invulnerable( _duration : float = 1.0 ) -> void:
 	invulnerable = true
 	hit_box.monitoring = false
 	
